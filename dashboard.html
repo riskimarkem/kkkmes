@@ -159,31 +159,42 @@
             </div>
             <div class="shc-limit-bar"><div class="shc-limit-fill" id="shcLimitFill"></div></div>
           </div>
-          <div class="shc-breakdown">
-            <div class="shc-item"><span>Pokok</span><strong id="simpPok">—</strong></div>
-            <div class="shc-item"><span>Wajib</span><strong id="simpWaj">—</strong></div>
-            <div class="shc-item"><span>Sukarela</span><strong id="simpSuk">—</strong></div>
-            <div class="shc-item highlight"><span>Est. SHU</span><strong id="simpSHU">—</strong></div>
-          </div>
         </div>
 
+        <!-- Rincian simpanan — dipindahkan dari kartu hijau -->
         <div class="home-quick-grid">
-          <button class="quick-btn" onclick="showSec('kar-simpanan')">
-            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/><circle cx="16" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg></div>
-            Saldo
-          </button>
-          <button class="quick-btn" onclick="showSec('kar-pinjaman')">
-            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/><line x1="12" y1="15" x2="15" y2="15"/></svg></div>
-            Pinjaman
-          </button>
-          <button class="quick-btn" onclick="showSec('kar-katalog')">
-            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-            Belanja
-          </button>
-          <button class="quick-btn" onclick="showSec('kar-riwayat')">
-            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></div>
-            Riwayat
-          </button>
+          <div class="simp-stat-card">
+            <div class="ssc-ico">
+              <!-- Pokok: shield/foundation icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.35C17.25 23.15 21 18.25 21 13V7l-9-5z"/></svg>
+            </div>
+            <div class="ssc-label">Pokok</div>
+            <div class="ssc-amount" id="simpPok">—</div>
+          </div>
+          <div class="simp-stat-card">
+            <div class="ssc-ico">
+              <!-- Wajib: repeat/monthly icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+            </div>
+            <div class="ssc-label">Wajib</div>
+            <div class="ssc-amount" id="simpWaj">—</div>
+          </div>
+          <div class="simp-stat-card">
+            <div class="ssc-ico">
+              <!-- Sukarela: plus/voluntary icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/><circle cx="12" cy="12" r="9"/></svg>
+            </div>
+            <div class="ssc-label">Sukarela</div>
+            <div class="ssc-amount" id="simpSuk">—</div>
+          </div>
+          <div class="simp-stat-card simp-stat-card--accent">
+            <div class="ssc-ico ssc-ico--accent">
+              <!-- SHU: trending-up / return icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div class="ssc-label">Est. SHU</div>
+            <div class="ssc-amount ssc-amount--accent" id="simpSHU">—</div>
+          </div>
         </div>
 
         <div class="card-section">
@@ -223,23 +234,31 @@
       <section class="sec" id="kar-simpanan" hidden>
         <div class="sec-hd"><div><h2>Saldo Simpanan</h2><p>Rincian simpanan Anda di KopKar MES</p></div></div>
         <div class="saldo-cards">
-          <div class="saldo-card highlight-card">
-            <div class="sc-icon">💵</div>
+          <div class="saldo-card">
+            <div class="sc-icon-wrap sc-icon-wrap--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="sc-svg"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.35C17.25 23.15 21 18.25 21 13V7l-9-5z"/></svg>
+            </div>
             <div class="sc-info"><div class="sc-name">Simpanan Pokok</div><div class="sc-desc">Setoran awal keanggotaan</div></div>
             <div class="sc-amount green-text" id="detPok">—</div>
           </div>
           <div class="saldo-card">
-            <div class="sc-icon">📅</div>
+            <div class="sc-icon-wrap sc-icon-wrap--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="sc-svg"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+            </div>
             <div class="sc-info"><div class="sc-name">Simpanan Wajib</div><div class="sc-desc">Potongan gaji bulanan</div></div>
             <div class="sc-amount" id="detWaj">—</div>
           </div>
           <div class="saldo-card">
-            <div class="sc-icon">🐷</div>
+            <div class="sc-icon-wrap sc-icon-wrap--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="sc-svg"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/><circle cx="12" cy="12" r="9"/></svg>
+            </div>
             <div class="sc-info"><div class="sc-name">Simpanan Sukarela</div><div class="sc-desc">Setoran tambahan anggota</div></div>
             <div class="sc-amount" id="detSuk">—</div>
           </div>
-          <div class="saldo-card highlight-card">
-            <div class="sc-icon">🏆</div>
+          <div class="saldo-card saldo-card--accent">
+            <div class="sc-icon-wrap sc-icon-wrap--amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="sc-svg"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
             <div class="sc-info"><div class="sc-name">Estimasi SHU</div><div class="sc-desc">12% dari total simpanan</div></div>
             <div class="sc-amount green-text" id="detSHU">—</div>
           </div>
