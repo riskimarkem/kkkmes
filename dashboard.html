@@ -86,6 +86,10 @@
       <a class="nav-link" data-sec="kar-riwayat">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>Riwayat
       </a>
+      <div class="nav-grp-lbl">Akun</div>
+      <a class="nav-link" data-sec="kar-profil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profil &amp; Akun
+      </a>
     </nav>
 
     <nav class="sb-nav" id="navAdmin" hidden>
@@ -409,6 +413,239 @@
         </div>
       </section>
 
+      <!-- ═══ KAR PROFIL ═══ -->
+      <section class="sec" id="kar-profil" hidden>
+
+        <!-- Avatar header -->
+        <div class="profil-hero">
+          <div class="profil-avatar" id="profilAvatar">—</div>
+          <div class="profil-hero-info">
+            <div class="profil-name" id="profilName">—</div>
+            <div class="profil-role">Karyawan · <span id="profilDept">—</span></div>
+            <div class="profil-nik">NIK: <span id="profilNIK">—</span></div>
+          </div>
+        </div>
+
+        <!-- ── Install PWA (hanya muncul jika belum install) ── -->
+        <div id="pwaInstallRow" class="profil-menu-group" hidden>
+          <div class="profil-group-label">Aplikasi</div>
+          <button class="profil-menu-item profil-menu-item--install" id="btnInstallPWA" onclick="triggerPWAInstall()">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Install Aplikasi</div>
+                <div class="pmi-desc">Tambahkan ke layar utama HP Anda</div>
+              </div>
+            </div>
+            <div class="pmi-badge-install">Pasang</div>
+          </button>
+        </div>
+
+        <!-- ── Menu Utama Profil ── -->
+        <div class="profil-menu-group">
+          <div class="profil-group-label">Simpanan &amp; Keuangan</div>
+          <button class="profil-menu-item" onclick="showSec('kar-simpanan')">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Saldo Simpanan</div>
+                <div class="pmi-desc">Lihat rincian &amp; mutasi simpanan</div>
+              </div>
+            </div>
+            <svg class="pmi-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="profil-menu-item" onclick="showSec('kar-pinjaman')">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Pinjaman Saya</div>
+                <div class="pmi-desc">Status &amp; pengajuan pinjaman</div>
+              </div>
+            </div>
+            <svg class="pmi-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="profil-menu-item" onclick="showSec('kar-riwayat')">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--teal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Riwayat Transaksi</div>
+                <div class="pmi-desc">Histori belanja &amp; cicilan</div>
+              </div>
+            </div>
+            <svg class="pmi-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="profil-menu-group">
+          <div class="profil-group-label">Informasi</div>
+          <button class="profil-menu-item" onclick="showSec('kar-tentang')">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--slate">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Tentang Koperasi</div>
+                <div class="pmi-desc">Profil &amp; informasi KopKar MES</div>
+              </div>
+            </div>
+            <svg class="pmi-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="profil-menu-group">
+          <div class="profil-group-label">Akun</div>
+          <button class="profil-menu-item profil-menu-item--danger" id="profilLogoutBtn">
+            <div class="pmi-left">
+              <div class="pmi-ico pmi-ico--red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              </div>
+              <div class="pmi-text">
+                <div class="pmi-title">Keluar</div>
+                <div class="pmi-desc">Logout dari akun Anda</div>
+              </div>
+            </div>
+            <svg class="pmi-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="profil-version">
+          <div class="pv-logo">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 1L3 5v7c0 5.25 3.75 9.5 9 11 5.25-1.5 9-5.75 9-11V5l-9-4z" fill="rgba(22,163,74,0.12)" stroke="#16a34a" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="#16a34a"/></svg>
+          </div>
+          <div class="pv-app">KopKar MES</div>
+          <div class="pv-ver">Versi 3.0.0 · PT. Mandiri Eka Semesta</div>
+        </div>
+
+      </section><!-- /kar-profil -->
+
+
+      <!-- ═══ KAR TENTANG ═══ -->
+      <section class="sec" id="kar-tentang" hidden>
+        <div class="sec-hd">
+          <div>
+            <h2>Tentang Koperasi</h2>
+            <p>Profil &amp; informasi KopKar MES</p>
+          </div>
+        </div>
+
+        <!-- Logo & nama -->
+        <div class="tentang-brand">
+          <div class="tb-hex">
+            <svg viewBox="0 0 56 64" fill="none" width="56" height="64">
+              <path d="M28 2L54 16.5V47.5L28 62L2 47.5V16.5L28 2Z" fill="url(#tbG)" stroke="rgba(22,163,74,0.3)" stroke-width="1.5"/>
+              <circle cx="28" cy="33" r="9" fill="rgba(22,163,74,0.12)"/>
+              <circle cx="28" cy="33" r="5" fill="#16a34a"/>
+              <path d="M22 24l6-7 6 7" stroke="rgba(22,163,74,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <defs>
+                <linearGradient id="tbG" x1="2" y1="2" x2="54" y2="62" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#dcfce7"/>
+                  <stop offset="100%" stop-color="#bbf7d0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="tb-name">KopKar MES</div>
+          <div class="tb-fullname">Koperasi Konsumen Karyawan<br>PT. Mandiri Eka Semesta</div>
+        </div>
+
+        <!-- Statistik singkat -->
+        <div class="tentang-stats">
+          <div class="ts-item">
+            <div class="ts-val">128</div>
+            <div class="ts-lbl">Anggota Aktif</div>
+          </div>
+          <div class="ts-divider"></div>
+          <div class="ts-item">
+            <div class="ts-val">Rp 4,2M</div>
+            <div class="ts-lbl">Dana Tersalur</div>
+          </div>
+          <div class="ts-divider"></div>
+          <div class="ts-item">
+            <div class="ts-val">12 Th</div>
+            <div class="ts-lbl">Berdiri</div>
+          </div>
+        </div>
+
+        <!-- Info card -->
+        <div class="tentang-section">
+          <div class="tentang-section-title">Tentang Kami</div>
+          <div class="card-box">
+            <p class="tentang-p">Koperasi Konsumen Karyawan PT. Mandiri Eka Semesta (KopKar MES) adalah koperasi primer yang didirikan oleh dan untuk seluruh karyawan PT. Mandiri Eka Semesta. Berdiri sejak tahun 2012, koperasi ini berkomitmen untuk meningkatkan kesejahteraan anggota melalui layanan simpanan, pinjaman berbunga rendah, dan fasilitas belanja kebutuhan sehari-hari.</p>
+          </div>
+        </div>
+
+        <div class="tentang-section">
+          <div class="tentang-section-title">Legalitas</div>
+          <div class="card-box">
+            <div class="tentang-info-row">
+              <span class="tir-label">Badan Hukum</span>
+              <span class="tir-val">No. 123/BH/KWK/2012</span>
+            </div>
+            <div class="tentang-info-row">
+              <span class="tir-label">NPWP Koperasi</span>
+              <span class="tir-val">12.345.678.9-012.000</span>
+            </div>
+            <div class="tentang-info-row">
+              <span class="tir-label">Alamat</span>
+              <span class="tir-val">Jl. Industri Raya No. 1, Kawasan Industri MES</span>
+            </div>
+            <div class="tentang-info-row">
+              <span class="tir-label">Email</span>
+              <span class="tir-val">koperasi@mandirieka.co.id</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tentang-section">
+          <div class="tentang-section-title">Layanan</div>
+          <div class="card-box">
+            <div class="tentang-layanan-list">
+              <div class="tll-item">
+                <div class="tll-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+                </div>
+                <div>
+                  <div class="tll-name">Simpanan Anggota</div>
+                  <div class="tll-desc">Pokok, wajib, dan sukarela dengan bagi hasil SHU tahunan</div>
+                </div>
+              </div>
+              <div class="tll-item">
+                <div class="tll-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                </div>
+                <div>
+                  <div class="tll-name">Pinjaman Berbunga Rendah</div>
+                  <div class="tll-desc">Bunga 1% per bulan, proses cepat, tanpa jaminan</div>
+                </div>
+              </div>
+              <div class="tll-item">
+                <div class="tll-ico">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                </div>
+                <div>
+                  <div class="tll-name">Belanja Koperasi</div>
+                  <div class="tll-desc">Kebutuhan sehari-hari dengan harga spesial anggota</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tentang-footer">
+          <div>Dibuat dengan ❤️ untuk kesejahteraan anggota</div>
+          <div class="tentang-footer-ver">KopKar MES v3.0 · © 2025</div>
+        </div>
+
+      </section><!-- /kar-tentang -->
+
       <!-- ═══ ADM HOME ═══ -->
       <section class="sec" id="adm-home" hidden>
         <div class="page-hero green-hero">
@@ -515,9 +752,10 @@
         Belanja
         <span class="bn-badge" id="bnCartBadge" hidden>0</span>
       </button>
-      <button class="bn-item" data-sec="kar-riwayat" onclick="showSec('kar-riwayat')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-        Riwayat
+      <button class="bn-item" data-sec="kar-profil" onclick="showSec('kar-profil')" id="bnProfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profil
+        <span class="bn-badge bn-badge--pwa" id="bnPwaDot" hidden>!</span>
       </button>
     </nav>
 
@@ -570,6 +808,12 @@
 
 <!-- ══ SCRIPTS ══ -->
 <script>
+// Extend SEC_TITLES untuk halaman baru
+window._extraSecTitles = {
+  'kar-profil':  'Profil & Akun',
+  'kar-tentang': 'Tentang Koperasi',
+};
+
 function setKarPinTab(btn, tabId) {
   document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
@@ -586,19 +830,43 @@ function setKarPinTab(btn, tabId) {
 
 <script>
 (function patchApp() {
-  // ── 1. Tampilkan bottom nav untuk karyawan ──
-  try {
-    const u = JSON.parse(sessionStorage.getItem('kmes_user'));
-    if (u && u.role === 'karyawan') {
-      const nav = document.getElementById('navKaryawanBottom');
-      if (nav) nav.hidden = false;
-      // Perbarui sub-header
-      const sub = document.getElementById('karSub');
-      if (sub) sub.textContent = u.dept + ' · NIK ' + u.nik;
-    }
-  } catch(e){}
 
-  // ── 2. Patch showSec → sync bottom nav ──
+  // ── Variabel global PWA ──
+  let _deferredPWAPrompt = null;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+
+  // ── 1. Tampilkan bottom nav + isi profil untuk karyawan ──
+  let _user = null;
+  try { _user = JSON.parse(sessionStorage.getItem('kmes_user')); } catch(e){}
+
+  if (_user && _user.role === 'karyawan') {
+    // Bottom nav
+    const nav = document.getElementById('navKaryawanBottom');
+    if (nav) nav.hidden = false;
+
+    // Sub-header beranda
+    const sub = document.getElementById('karSub');
+    if (sub) sub.textContent = _user.dept + ' · NIK ' + _user.nik;
+
+    // Isi data profil
+    const initial = (_user.nama || '?').charAt(0).toUpperCase();
+    ['profilAvatar','tbAvatar'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.textContent = initial;
+    });
+    const pn = document.getElementById('profilName'); if (pn) pn.textContent = _user.nama;
+    const pd = document.getElementById('profilDept'); if (pd) pd.textContent = _user.dept;
+    const pk = document.getElementById('profilNIK');  if (pk) pk.textContent = _user.nik;
+
+    // Tombol logout di profil
+    const plb = document.getElementById('profilLogoutBtn');
+    if (plb) plb.onclick = () => {
+      sessionStorage.removeItem('kmes_user');
+      location.href = 'index.html';
+    };
+  }
+
+  // ── 2. Patch showSec → sync bottom nav + topbar title ──
   const _show = window.showSec;
   if (typeof _show === 'function') {
     window.showSec = function(id) {
@@ -606,10 +874,15 @@ function setKarPinTab(btn, tabId) {
       document.querySelectorAll('.bn-item[data-sec]').forEach(b => {
         b.classList.toggle('active', b.dataset.sec === id);
       });
+      // Update topbar title untuk seksi baru
+      if (window._extraSecTitles && window._extraSecTitles[id]) {
+        const tt = document.getElementById('tbTitle');
+        if (tt) tt.textContent = window._extraSecTitles[id];
+      }
     };
   }
 
-  // ── 3. Patch updateCartUI → sync badge ──
+  // ── 3. Patch updateCartUI → sync badge bottom nav ──
   const _cart = window.updateCartUI;
   if (typeof _cart === 'function') {
     window.updateCartUI = function() {
@@ -640,11 +913,9 @@ function setKarPinTab(btn, tabId) {
         <span class="tx-footer-lbl">Total Belanja Bulan Ini</span>
         <span class="tx-footer-val">${rp(total)}</span>
       </div>`;
-    const wv = document.getElementById('widTxVal');
-    if (wv) wv.textContent = rp(total);
   }
 
-  // ── 5. Patch renderSaldoWidget → isi limit + pinjaman progress ──
+  // ── 5. Patch renderSaldoWidget ──
   const _saldo = window.renderSaldoWidget;
   if (typeof _saldo === 'function') {
     window.renderSaldoWidget = function() {
@@ -655,16 +926,14 @@ function setKarPinTab(btn, tabId) {
       const limit = s.total * 2;
       const active = typeof PINJAMAN_DB !== 'undefined'
         ? PINJAMAN_DB.find(p => p.nik === USER.nik && p.status === 'active') : null;
-      const used = active ? (active.nominal - active.lunas * active.cicilan) : 0;
-      const pct  = limit > 0 ? Math.min(100, Math.round((used/limit)*100)) : 0;
-
+      const used = active ? Math.max(0, active.nominal - active.lunas * active.cicilan) : 0;
+      const pct  = limit > 0 ? Math.min(100, Math.round((used / limit) * 100)) : 0;
       const lv = document.getElementById('shcLimitVal');
       const lf = document.getElementById('shcLimitFill');
       if (lv) lv.textContent = rp(limit - used);
       if (lf) lf.style.width = pct + '%';
-
       if (active) {
-        const pct2 = Math.round((active.lunas/active.tenor)*100);
+        const pct2 = Math.round((active.lunas / active.tenor) * 100);
         const pl = document.getElementById('wPinjamanProgLbl');
         const pp = document.getElementById('wPinjamanProgPct');
         const pf = document.getElementById('wPinjamanProgFill');
@@ -673,11 +942,54 @@ function setKarPinTab(btn, tabId) {
         if (pf) pf.style.width = pct2 + '%';
       }
     };
-    // Re-render dengan data yang sudah ada
     if (typeof getSimpanan !== 'undefined') window.renderSaldoWidget();
   }
 
-  // ── 6. Register Service Worker ──
+  // ── 6. PWA Install logic ──
+  function setPWAInstallVisible(show) {
+    const row = document.getElementById('pwaInstallRow');
+    if (row) row.hidden = !show;
+    // Notification dot di ikon Profil
+    const dot = document.getElementById('bnPwaDot');
+    if (dot) dot.hidden = !show;
+  }
+
+  // Jika sudah standalone, sembunyikan tombol install
+  if (isStandalone) {
+    setPWAInstallVisible(false);
+  } else {
+    // Tangkap event beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      _deferredPWAPrompt = e;
+      setPWAInstallVisible(true);
+    });
+    // Jika sudah installed dari luar
+    window.addEventListener('appinstalled', () => {
+      _deferredPWAPrompt = null;
+      setPWAInstallVisible(false);
+      if (typeof showToast === 'function')
+        showToast('✅ Aplikasi berhasil dipasang!', 'toast-ok');
+    });
+  }
+
+  // Fungsi trigger install (dipanggil dari tombol)
+  window.triggerPWAInstall = async function() {
+    if (!_deferredPWAPrompt) {
+      // Fallback: tunjukkan instruksi manual
+      if (typeof showToast === 'function')
+        showToast('ℹ️ Gunakan menu browser → "Tambah ke Layar Utama"', 'toast-info', 4000);
+      return;
+    }
+    _deferredPWAPrompt.prompt();
+    const { outcome } = await _deferredPWAPrompt.userChoice;
+    if (outcome === 'accepted') {
+      _deferredPWAPrompt = null;
+      setPWAInstallVisible(false);
+    }
+  };
+
+  // ── 7. Register Service Worker ──
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js')
@@ -685,6 +997,7 @@ function setKarPinTab(btn, tabId) {
         .catch(e => console.warn('[SW] Error:', e));
     });
   }
+
 })();
 </script>
 </body>
