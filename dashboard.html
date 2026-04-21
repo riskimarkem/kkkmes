@@ -2,33 +2,46 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>KopKar MES — Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#166534" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="KopKar MES" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
-  <!-- Lucide icons (line style) -->
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
-<!-- ========== SIDEBAR (Desktop) ========== -->
 <div class="dash-page">
   <div id="sbOverlay" class="sb-overlay"></div>
+
+  <!-- ══ SIDEBAR ══ -->
   <aside id="sidebar" class="sidebar">
     <div class="sb-head">
       <div class="sb-logo brand-hex">
-        <svg viewBox="0 0 56 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28 2L52 16V48L28 62L4 48V16L28 2Z" fill="url(#hexGrad)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-          <path d="M28 18C22.477 18 18 22.477 18 28C18 33.523 22.477 38 28 38C33.523 38 38 33.523 38 28C38 22.477 33.523 18 28 18Z" fill="rgba(255,255,255,0.15)"/>
-          <path d="M22 28C22 28 24 24 28 24C32 24 34 28 34 28" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="28" cy="32" r="3" fill="white"/>
+        <svg viewBox="0 0 56 64" fill="none">
+          <path d="M28 2L54 16.5V47.5L28 62L2 47.5V16.5L28 2Z" fill="url(#sbG)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+          <circle cx="28" cy="33" r="9" fill="rgba(255,255,255,0.15)"/>
+          <circle cx="28" cy="33" r="5" fill="white" opacity="0.9"/>
+          <path d="M22 24l6-7 6 7" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" fill="none"/>
           <defs>
-            <linearGradient id="hexGrad" x1="4" y1="2" x2="52" y2="62" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#15803d"/>
-              <stop offset="100%" stop-color="#22c55e"/>
+            <linearGradient id="sbG" x1="2" y1="2" x2="54" y2="62" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#15803d"/><stop offset="100%" stop-color="#22c55e"/>
             </linearGradient>
           </defs>
         </svg>
@@ -43,27 +56,23 @@
     </div>
 
     <div class="sb-user-card">
-      <div class="sb-avatar" id="sbAvatar">R</div>
+      <div class="sb-avatar" id="sbAvatar">—</div>
       <div>
-        <div class="sb-uname" id="sbUname">Riski Hariyanto</div>
-        <span class="sb-urole karyawan" id="sbUrole">Karyawan</span>
+        <div class="sb-uname" id="sbUname">—</div>
+        <span class="sb-urole" id="sbUrole">—</span>
       </div>
     </div>
 
-    <!-- Karyawan Nav -->
-    <nav class="sb-nav" id="navKaryawan" style="display:none">
+    <nav class="sb-nav" id="navKaryawan" hidden>
       <div class="nav-grp-lbl">Menu Utama</div>
-      <a class="nav-link active" data-sec="kar-home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Beranda
+      <a class="nav-link" data-sec="kar-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda
       </a>
       <a class="nav-link" data-sec="kar-simpanan">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
-        Saldo Simpanan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>Saldo Simpanan
       </a>
       <a class="nav-link" data-sec="kar-pinjaman">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-        Pinjaman
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pinjaman
       </a>
       <div class="nav-grp-lbl">Belanja</div>
       <a class="nav-link" data-sec="kar-katalog">
@@ -72,29 +81,23 @@
         <span class="nav-badge cart-cnt" id="cartCnt">0</span>
       </a>
       <a class="nav-link" data-sec="kar-keranjang">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.56L23 6H6"/></svg>
-        Keranjang
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.56L23 6H6"/></svg>Keranjang
       </a>
       <a class="nav-link" data-sec="kar-riwayat">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Riwayat
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>Riwayat
       </a>
     </nav>
 
-    <!-- Admin Nav -->
-    <nav class="sb-nav" id="navAdmin" style="display:none">
-      <div class="nav-grp-lbl">Admin</div>
-      <a class="nav-link active" data-sec="adm-home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        Overview
+    <nav class="sb-nav" id="navAdmin" hidden>
+      <div class="nav-grp-lbl">Admin Panel</div>
+      <a class="nav-link" data-sec="adm-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Overview
       </a>
       <a class="nav-link" data-sec="adm-barang">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
-        Kelola Barang
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Kelola Barang
       </a>
       <a class="nav-link" data-sec="adm-pengguna">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        Kelola Pengguna
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Kelola Pengguna
       </a>
       <a class="nav-link" data-sec="adm-pinjaman">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
@@ -102,8 +105,7 @@
         <span class="nav-badge" id="admPendingBadge">2</span>
       </a>
       <a class="nav-link" data-sec="adm-laporan">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        Laporan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Laporan
       </a>
     </nav>
 
@@ -113,10 +115,9 @@
     </button>
   </aside>
 
-  <!-- ========== MAIN WRAP ========== -->
+  <!-- ══ MAIN WRAP ══ -->
   <div class="main-wrap">
 
-    <!-- TOPBAR -->
     <header class="topbar">
       <button id="hamBtn" class="ham-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -127,253 +128,125 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
           <span class="notif-dot"></span>
         </div>
-        <div class="tb-avatar" id="tbAvatar">R</div>
+        <div class="tb-avatar" id="tbAvatar">—</div>
       </div>
     </header>
 
-    <!-- ========== CONTENT ========== -->
     <main class="content">
 
-      <!-- =====================================================
-           KARYAWAN SECTIONS
-           ===================================================== -->
-
-      <!-- KAR: HOME -->
+      <!-- ═══ KAR HOME ═══ -->
       <section class="sec" id="kar-home">
-
-        <!-- 1. HEADER: Sapaan & Nama -->
-        <div class="page-hero green-hero" style="margin-bottom:20px">
-          <div>
+        <div class="page-hero green-hero">
+          <div class="ph-body">
             <div class="ph-greet" id="karGreet">Selamat pagi,</div>
-            <div class="ph-name" id="karName">Riski Hariyanto</div>
-            <div class="ph-sub">Produksi · NIK 29226</div>
+            <div class="ph-name" id="karName">—</div>
+            <div class="ph-sub" id="karSub">—</div>
           </div>
           <div class="ph-illo">👷</div>
         </div>
 
-        <!-- 2. RINGKASAN FINANSIAL (Saldo Hero Card) -->
-        <div class="saldo-hero-card" style="margin-bottom:20px">
+        <div class="saldo-hero-card">
           <div class="shc-top">
             <div class="shc-label">Total Saldo Simpanan</div>
             <div class="shc-badge">✓ Aktif</div>
           </div>
-          <!-- Nominal besar -->
-          <div class="shc-amount" id="totalSaldo">Rp 3.650.000</div>
-          <!-- NIK tepat di bawah nominal -->
-          <div class="shc-nik" id="saldoNIK">NIK: 29226</div>
-
-          <!-- Progress bar limit pinjaman -->
+          <div class="shc-amount" id="totalSaldo">—</div>
+          <div class="shc-nik" id="saldoNIK">NIK: —</div>
           <div class="shc-limit">
             <div class="shc-limit-row">
               <span class="shc-limit-lbl">Limit Pinjaman Tersedia</span>
-              <span class="shc-limit-val">Rp 7.300.000</span>
+              <span class="shc-limit-val" id="shcLimitVal">—</span>
             </div>
-            <div class="shc-limit-bar">
-              <div class="shc-limit-fill" style="width:50%"></div>
-            </div>
+            <div class="shc-limit-bar"><div class="shc-limit-fill" id="shcLimitFill"></div></div>
           </div>
-
-          <!-- 2×2 breakdown -->
           <div class="shc-breakdown">
-            <div class="shc-item">
-              <span>Pokok</span>
-              <strong id="simpPok">Rp 500.000</strong>
-            </div>
-            <div class="shc-item">
-              <span>Wajib</span>
-              <strong id="simpWaj">Rp 2.400.000</strong>
-            </div>
-            <div class="shc-item">
-              <span>Sukarela</span>
-              <strong id="simpSuk">Rp 750.000</strong>
-            </div>
-            <div class="shc-item highlight">
-              <span>Est. SHU</span>
-              <strong id="simpSHU">Rp 438.000</strong>
-            </div>
+            <div class="shc-item"><span>Pokok</span><strong id="simpPok">—</strong></div>
+            <div class="shc-item"><span>Wajib</span><strong id="simpWaj">—</strong></div>
+            <div class="shc-item"><span>Sukarela</span><strong id="simpSuk">—</strong></div>
+            <div class="shc-item highlight"><span>Est. SHU</span><strong id="simpSHU">—</strong></div>
           </div>
         </div>
 
-        <!-- 3. AKSES CEPAT (Grid 4 ikon minimalis) -->
-        <div class="home-quick-grid" style="margin-bottom:20px">
+        <div class="home-quick-grid">
           <button class="quick-btn" onclick="showSec('kar-simpanan')">
-            <div class="qb-ico green">
-              <!-- Wallet line icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <rect x="2" y="7" width="20" height="14" rx="2"/>
-                <path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/>
-                <circle cx="16" cy="14" r="1.5" fill="currentColor" stroke="none"/>
-              </svg>
-            </div>
+            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/><circle cx="16" cy="14" r="1.5" fill="currentColor" stroke="none"/></svg></div>
             Saldo
           </button>
           <button class="quick-btn" onclick="showSec('kar-pinjaman')">
-            <div class="qb-ico green">
-              <!-- Credit card line icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <rect x="2" y="5" width="20" height="14" rx="2"/>
-                <line x1="2" y1="10" x2="22" y2="10"/>
-                <line x1="6" y1="15" x2="9" y2="15"/>
-                <line x1="12" y1="15" x2="15" y2="15"/>
-              </svg>
-            </div>
+            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="9" y2="15"/><line x1="12" y1="15" x2="15" y2="15"/></svg></div>
             Pinjaman
           </button>
           <button class="quick-btn" onclick="showSec('kar-katalog')">
-            <div class="qb-ico green">
-              <!-- Shopping bag line icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 01-8 0"/>
-              </svg>
-            </div>
+            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
             Belanja
           </button>
           <button class="quick-btn" onclick="showSec('kar-riwayat')">
-            <div class="qb-ico green">
-              <!-- Clock / history line icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <circle cx="12" cy="12" r="9"/>
-                <polyline points="12 7 12 12 15 15"/>
-              </svg>
-            </div>
+            <div class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></div>
             Riwayat
           </button>
         </div>
 
-        <!-- 4. STATUS PINJAMAN AKTIF (Soft Card Putih) -->
-        <div class="card-section" style="margin-bottom:20px">
+        <div class="card-section">
           <div class="cs-head">
             <h3>Status Pinjaman</h3>
-            <a class="cs-link" onclick="showSec('kar-pinjaman')">Kelola →</a>
+            <button class="cs-link" onclick="showSec('kar-pinjaman')">Kelola →</button>
           </div>
           <div class="widget-card">
             <div class="wc-label">Sisa Pinjaman Aktif</div>
-            <div class="wc-amount" id="widPinjamanVal">Rp 6.148.000</div>
-            <div class="wc-sub" id="widPinjamanKet">Sisa 16 bulan</div>
-
-            <!-- Progress pelunasan -->
-            <div class="pprog-label" style="font-size:0.72rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:6px">
-              <span>Lunas 8/24 cicilan</span><span>33%</span>
+            <div class="wc-amount" id="widPinjamanVal">—</div>
+            <div class="wc-sub" id="widPinjamanKet">—</div>
+            <div class="wc-prog-wrap">
+              <div class="pprog-label">
+                <span id="wPinjamanProgLbl">—</span><span id="wPinjamanProgPct">—</span>
+              </div>
+              <div class="pprog-bar"><div class="pprog-fill" id="wPinjamanProgFill"></div></div>
             </div>
-            <div class="pprog-bar" style="margin-bottom:16px">
-              <div class="pprog-fill" style="width:33%"></div>
-            </div>
-
-            <!-- Tombol lebih kecil dan full-rounded -->
-            <button class="btn-prim" onclick="showSec('kar-pinjaman')" style="width:100%">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <button class="btn-prim btn-full btn-mt" onclick="showSec('kar-pinjaman')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-ico"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
               Kelola Pinjaman
             </button>
           </div>
         </div>
 
-        <!-- 5. RIWAYAT BELANJA (Soft Card Putih) -->
-        <div class="card-section" style="margin-bottom:20px">
+        <div class="card-section">
           <div class="cs-head">
             <h3>Riwayat Belanja</h3>
-            <a class="cs-link" onclick="showSec('kar-riwayat')">Lihat semua →</a>
+            <button class="cs-link" onclick="showSec('kar-riwayat')">Lihat semua →</button>
           </div>
-          <div class="widget-card" style="padding:0;overflow:hidden">
-            <!-- Transaksi item list -->
-            <div id="karTxList">
-              <!-- Dirender oleh JS: renderKarTxWidget() -->
-              <div class="tx-item">
-                <div class="tx-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:16px;height:16px;color:var(--primary)"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                </div>
-                <div class="tx-info">
-                  <div class="tx-name">Kopi x2, Gula 1kg</div>
-                  <div class="tx-date">10 Apr 2025 · #TRX-0035</div>
-                </div>
-                <div class="tx-amount">Rp 44.000</div>
-              </div>
-              <div class="tx-item">
-                <div class="tx-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:16px;height:16px;color:var(--primary)"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                </div>
-                <div class="tx-info">
-                  <div class="tx-name">Sabun x3</div>
-                  <div class="tx-date">05 Apr 2025 · #TRX-0028</div>
-                </div>
-                <div class="tx-amount">Rp 19.950</div>
-              </div>
-              <div class="tx-item" style="border-bottom:none">
-                <div class="tx-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:16px;height:16px;color:var(--primary)"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                </div>
-                <div class="tx-info">
-                  <div class="tx-name">Mie x5, Teh Botol x2</div>
-                  <div class="tx-date">01 Apr 2025 · #TRX-0021</div>
-                </div>
-                <div class="tx-amount">Rp 25.650</div>
-              </div>
-            </div>
-            <!-- Footer ringkasan total -->
-            <div class="tx-footer">
-              <span class="tx-footer-lbl">Total Belanja Bulan Ini</span>
-              <span class="tx-footer-val" id="widTxVal">Rp 89.600</span>
-            </div>
+          <div class="widget-card widget-card--flush" id="karTxList">
+            <div class="tx-empty">Memuat data...</div>
           </div>
         </div>
+      </section>
 
-      </section><!-- /kar-home -->
-
-
-      <!-- =====================================================
-           KAR: SIMPANAN
-           ===================================================== -->
-      <section class="sec" id="kar-simpanan" style="display:none">
-        <div class="sec-hd">
-          <div>
-            <h2>Saldo Simpanan</h2>
-            <p>Rincian simpanan Anda di KopKar MES</p>
-          </div>
-        </div>
-
+      <!-- ═══ KAR SIMPANAN ═══ -->
+      <section class="sec" id="kar-simpanan" hidden>
+        <div class="sec-hd"><div><h2>Saldo Simpanan</h2><p>Rincian simpanan Anda di KopKar MES</p></div></div>
         <div class="saldo-cards">
           <div class="saldo-card highlight-card">
             <div class="sc-icon">💵</div>
-            <div class="sc-info">
-              <div class="sc-name">Simpanan Pokok</div>
-              <div class="sc-desc">Setoran awal keanggotaan</div>
-            </div>
-            <div class="sc-amount green-text" id="detPok">Rp 500.000</div>
+            <div class="sc-info"><div class="sc-name">Simpanan Pokok</div><div class="sc-desc">Setoran awal keanggotaan</div></div>
+            <div class="sc-amount green-text" id="detPok">—</div>
           </div>
           <div class="saldo-card">
             <div class="sc-icon">📅</div>
-            <div class="sc-info">
-              <div class="sc-name">Simpanan Wajib</div>
-              <div class="sc-desc">Potongan gaji bulanan</div>
-            </div>
-            <div class="sc-amount" id="detWaj">Rp 2.400.000</div>
+            <div class="sc-info"><div class="sc-name">Simpanan Wajib</div><div class="sc-desc">Potongan gaji bulanan</div></div>
+            <div class="sc-amount" id="detWaj">—</div>
           </div>
           <div class="saldo-card">
             <div class="sc-icon">🐷</div>
-            <div class="sc-info">
-              <div class="sc-name">Simpanan Sukarela</div>
-              <div class="sc-desc">Setoran tambahan anggota</div>
-            </div>
-            <div class="sc-amount" id="detSuk">Rp 750.000</div>
+            <div class="sc-info"><div class="sc-name">Simpanan Sukarela</div><div class="sc-desc">Setoran tambahan anggota</div></div>
+            <div class="sc-amount" id="detSuk">—</div>
           </div>
           <div class="saldo-card highlight-card">
             <div class="sc-icon">🏆</div>
-            <div class="sc-info">
-              <div class="sc-name">Estimasi SHU</div>
-              <div class="sc-desc">12% dari total simpanan</div>
-            </div>
-            <div class="sc-amount green-text" id="detSHU">Rp 438.000</div>
+            <div class="sc-info"><div class="sc-name">Estimasi SHU</div><div class="sc-desc">12% dari total simpanan</div></div>
+            <div class="sc-amount green-text" id="detSHU">—</div>
           </div>
         </div>
-
-        <div class="card-box" style="margin-bottom:16px">
-          <div class="sp-row highlight">
-            <span>Total Simpanan</span>
-            <strong id="detTot" class="green-text">Rp 3.650.000</strong>
-          </div>
+        <div class="card-box card-box--mb">
+          <div class="sp-row highlight"><span>Total Simpanan</span><strong id="detTot" class="green-text">—</strong></div>
         </div>
-
         <div class="card-section">
           <div class="cs-head"><h3>Mutasi Simpanan</h3></div>
           <div class="table-wrap">
@@ -385,32 +258,17 @@
         </div>
       </section>
 
-
-      <!-- =====================================================
-           KAR: PINJAMAN
-           ===================================================== -->
-      <section class="sec" id="kar-pinjaman" style="display:none">
-        <div class="sec-hd">
-          <div>
-            <h2>Pinjaman</h2>
-            <p>Pengajuan &amp; status pinjaman Anda</p>
-          </div>
-        </div>
-
+      <!-- ═══ KAR PINJAMAN ═══ -->
+      <section class="sec" id="kar-pinjaman" hidden>
+        <div class="sec-hd"><div><h2>Pinjaman</h2><p>Pengajuan &amp; status pinjaman Anda</p></div></div>
         <div class="pinjaman-tabs">
           <button class="ptab active" onclick="setKarPinTab(this,'kpt-status')">Status Pinjaman</button>
           <button class="ptab" onclick="setKarPinTab(this,'kpt-ajukan')">Ajukan Pinjaman</button>
         </div>
-
-        <!-- STATUS -->
-        <div id="kpt-status">
-          <div id="myPinjamanCont"></div>
-        </div>
-
-        <!-- AJUKAN -->
-        <div id="kpt-ajukan" style="display:none">
+        <div id="kpt-status"><div id="myPinjamanCont"></div></div>
+        <div id="kpt-ajukan" hidden>
           <div class="card-box">
-            <h3 style="margin-bottom:16px">Formulir Pengajuan</h3>
+            <h3 class="card-box__title">Formulir Pengajuan</h3>
             <form id="loanForm">
               <div class="field-grp">
                 <label>Nominal Pinjaman</label>
@@ -422,9 +280,7 @@
               </div>
               <div class="field-grp">
                 <label>Tujuan Pinjaman</label>
-                <div class="field-box">
-                  <input type="text" id="loanTujuan" placeholder="Contoh: Renovasi Rumah" required />
-                </div>
+                <div class="field-box"><input type="text" id="loanTujuan" placeholder="Contoh: Renovasi Rumah" required /></div>
               </div>
               <div class="field-grp">
                 <label>Tenor (bulan)</label>
@@ -436,7 +292,6 @@
                   <button type="button" class="tenor-btn" onclick="setTenor(this,24)">24 bln</button>
                 </div>
               </div>
-
               <div class="sim-result">
                 <div class="sr-main">
                   <div class="sr-label">Estimasi Cicilan / Bulan</div>
@@ -445,33 +300,22 @@
                 <div class="sr-grid">
                   <div class="sr-item"><p>Nominal</p><strong id="simNominal">Rp 0</strong></div>
                   <div class="sr-item"><p>Tenor</p><strong id="simTenor">6 bulan</strong></div>
-                  <div class="sr-item" style="grid-column:1/-1"><p>Total Bayar</p><strong id="simTotal">Rp 0</strong></div>
+                  <div class="sr-item sr-item--full"><p>Total Bayar</p><strong id="simTotal">Rp 0</strong></div>
                 </div>
-                <div style="padding:10px 14px;text-align:center">
-                  <button type="button" onclick="toggleAmort()" style="background:none;border:none;color:var(--primary);font-size:0.78rem;font-weight:600;cursor:pointer;font-family:inherit">
-                    Lihat Jadwal Angsuran ↓
-                  </button>
+                <div class="sr-amort-toggle">
+                  <button type="button" class="btn-amort" onclick="toggleAmort()">Lihat Jadwal Angsuran ↓</button>
                 </div>
-                <div id="amortTable" style="display:none;padding:0 14px 14px"></div>
+                <div id="amortTable" hidden class="sr-amort-body"></div>
               </div>
-
-              <button type="submit" class="btn-prim btn-full" style="margin-top:16px">Ajukan Pinjaman</button>
+              <button type="submit" class="btn-prim btn-full btn-mt">Ajukan Pinjaman</button>
             </form>
           </div>
         </div>
       </section>
 
-
-      <!-- =====================================================
-           KAR: KATALOG
-           ===================================================== -->
-      <section class="sec" id="kar-katalog" style="display:none">
-        <div class="sec-hd">
-          <div>
-            <h2>Belanja Koperasi</h2>
-            <p>Produk tersedia dengan harga spesial anggota</p>
-          </div>
-        </div>
+      <!-- ═══ KAR KATALOG ═══ -->
+      <section class="sec" id="kar-katalog" hidden>
+        <div class="sec-hd"><div><h2>Belanja Koperasi</h2><p>Produk tersedia dengan harga spesial anggota</p></div></div>
         <div class="act-bar">
           <div class="searchbox">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -489,24 +333,16 @@
       </section>
 
       <!-- Cart FAB -->
-      <div id="cartFab" class="cart-fab" style="display:none" onclick="showSec('kar-keranjang')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:16px;height:16px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.56L23 6H6"/></svg>
+      <div id="cartFab" class="cart-fab" hidden onclick="showSec('kar-keranjang')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="cart-fab__ico"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.56L23 6H6"/></svg>
         <span id="cartFabTxt">0 item</span>
-        <span style="opacity:0.6;font-size:0.72rem">·</span>
+        <span class="cart-fab__sep">·</span>
         <span id="cartFabAmt">Rp 0</span>
       </div>
 
-
-      <!-- =====================================================
-           KAR: KERANJANG
-           ===================================================== -->
-      <section class="sec" id="kar-keranjang" style="display:none">
-        <div class="sec-hd">
-          <div>
-            <h2>Keranjang Belanja</h2>
-            <p>Review pesanan sebelum checkout</p>
-          </div>
-        </div>
+      <!-- ═══ KAR KERANJANG ═══ -->
+      <section class="sec" id="kar-keranjang" hidden>
+        <div class="sec-hd"><div><h2>Keranjang Belanja</h2><p>Review pesanan sebelum checkout</p></div></div>
         <div class="cart-layout">
           <div id="cartItemsCol">
             <div id="emptyCart" class="empty-state">
@@ -515,31 +351,23 @@
               <button class="btn-prim" onclick="showSec('kar-katalog')">Mulai Belanja</button>
             </div>
           </div>
-          <div id="cartSumCol" class="card-box" style="display:none">
-            <h3 style="margin-bottom:16px">Ringkasan Pesanan</h3>
+          <div id="cartSumCol" class="card-box" hidden>
+            <h3 class="card-box__title">Ringkasan Pesanan</h3>
             <div class="sum-row"><span>Subtotal</span><span id="cSubtotal">Rp 0</span></div>
-            <div class="sum-row" style="color:var(--success)"><span>Diskon 5% anggota</span><span id="cDiscount">- Rp 0</span></div>
+            <div class="sum-row sum-row--discount"><span>Diskon 5% anggota</span><span id="cDiscount">- Rp 0</span></div>
             <div class="sum-divider"></div>
-            <div class="sum-row bold"><span>Total</span><span id="cTotal">Rp 0</span></div>
-            <button class="btn-prim btn-full" style="margin-top:16px" onclick="checkout()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="width:14px;height:14px"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            <div class="sum-row sum-row--bold"><span>Total</span><span id="cTotal">Rp 0</span></div>
+            <button class="btn-prim btn-full btn-mt" onclick="checkout()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="btn-ico"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
               Checkout Sekarang
             </button>
           </div>
         </div>
       </section>
 
-
-      <!-- =====================================================
-           KAR: RIWAYAT
-           ===================================================== -->
-      <section class="sec" id="kar-riwayat" style="display:none">
-        <div class="sec-hd">
-          <div>
-            <h2>Riwayat Transaksi</h2>
-            <p>Histori belanja &amp; cicilan pinjaman</p>
-          </div>
-        </div>
+      <!-- ═══ KAR RIWAYAT ═══ -->
+      <section class="sec" id="kar-riwayat" hidden>
+        <div class="sec-hd"><div><h2>Riwayat Transaksi</h2><p>Histori belanja &amp; cicilan pinjaman</p></div></div>
         <div class="riwayat-tabs">
           <button class="rtab active" onclick="setRtab(this,'rt-belanja')">Riwayat Belanja</button>
           <button class="rtab" onclick="setRtab(this,'rt-cicilan')">Cicilan Pinjaman</button>
@@ -552,7 +380,7 @@
             </table>
           </div>
         </div>
-        <div id="rt-cicilan" style="display:none">
+        <div id="rt-cicilan" hidden>
           <div class="table-wrap">
             <table class="dtable">
               <thead><tr><th>#</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th><th>Status</th></tr></thead>
@@ -562,69 +390,51 @@
         </div>
       </section>
 
-
-      <!-- =====================================================
-           ADMIN SECTIONS
-           ===================================================== -->
-
-      <!-- ADM: HOME -->
-      <section class="sec" id="adm-home" style="display:none">
-        <div class="page-hero green-hero" style="margin-bottom:20px">
-          <div>
+      <!-- ═══ ADM HOME ═══ -->
+      <section class="sec" id="adm-home" hidden>
+        <div class="page-hero green-hero">
+          <div class="ph-body">
             <div class="ph-greet" id="admGreet">Selamat pagi,</div>
             <div class="ph-name" id="admName">Administrator</div>
             <div class="ph-sub">Panel Manajemen KopKar MES</div>
           </div>
           <div class="ph-illo">⚙️</div>
         </div>
-
-        <div class="kpi-grid" style="margin-bottom:20px">
+        <div class="kpi-grid">
           <div class="kpi-card">
-            <div class="kpi-ico green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
-            </div>
+            <div class="kpi-ico kpi-ico--green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg></div>
             <div class="kpi-val" id="adm-total-pinjam">Rp 0</div>
             <div class="kpi-lbl">Total Pinjaman Disalurkan</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-ico orange">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            </div>
+            <div class="kpi-ico kpi-ico--orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
             <div class="kpi-val" id="adm-aktif">0</div>
             <div class="kpi-lbl">Pinjaman Aktif</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-ico blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
-            </div>
+            <div class="kpi-ico kpi-ico--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
             <div class="kpi-val">7</div>
             <div class="kpi-lbl">Total Anggota Aktif</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-ico purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
+            <div class="kpi-ico kpi-ico--purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
             <div class="kpi-val" id="adm-pending">0</div>
             <div class="kpi-lbl">Menunggu Approval</div>
           </div>
         </div>
-
-        <div class="card-box" style="margin-bottom:20px">
-          <h3 style="margin-bottom:16px">Tren Omset Bulanan</h3>
+        <div class="card-box card-box--mb">
+          <h3 class="card-box__title">Tren Omset Bulanan</h3>
           <canvas id="chartOmset" height="90"></canvas>
         </div>
-
         <div class="card-box">
-          <h3 style="margin-bottom:16px">Distribusi Status Pinjaman</h3>
+          <h3 class="card-box__title">Distribusi Status Pinjaman</h3>
           <canvas id="chartPinjaman" height="160"></canvas>
         </div>
       </section>
 
-      <!-- ADM: BARANG -->
-      <section class="sec" id="adm-barang" style="display:none">
-        <div class="sec-hd">
-          <div><h2>Kelola Barang</h2><p>Manajemen inventori koperasi</p></div>
-        </div>
+      <!-- ═══ ADM BARANG ═══ -->
+      <section class="sec" id="adm-barang" hidden>
+        <div class="sec-hd"><div><h2>Kelola Barang</h2><p>Manajemen inventori koperasi</p></div></div>
         <div class="table-wrap">
           <table class="dtable">
             <thead><tr><th>#</th><th>Nama Barang</th><th>Kategori</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
@@ -633,11 +443,9 @@
         </div>
       </section>
 
-      <!-- ADM: PENGGUNA -->
-      <section class="sec" id="adm-pengguna" style="display:none">
-        <div class="sec-hd">
-          <div><h2>Kelola Pengguna</h2><p>Daftar anggota dan administrator</p></div>
-        </div>
+      <!-- ═══ ADM PENGGUNA ═══ -->
+      <section class="sec" id="adm-pengguna" hidden>
+        <div class="sec-hd"><div><h2>Kelola Pengguna</h2><p>Daftar anggota dan administrator</p></div></div>
         <div class="table-wrap">
           <table class="dtable">
             <thead><tr><th>#</th><th>NIK</th><th>Nama</th><th>Departemen</th><th>Role</th><th>Status</th></tr></thead>
@@ -646,24 +454,20 @@
         </div>
       </section>
 
-      <!-- ADM: APPROVAL PINJAMAN -->
-      <section class="sec" id="adm-pinjaman" style="display:none">
-        <div class="sec-hd">
-          <div><h2>Approval Pinjaman</h2><p>Pengajuan yang menunggu persetujuan</p></div>
-        </div>
+      <!-- ═══ ADM APPROVAL ═══ -->
+      <section class="sec" id="adm-pinjaman" hidden>
+        <div class="sec-hd"><div><h2>Approval Pinjaman</h2><p>Pengajuan yang menunggu persetujuan</p></div></div>
         <div id="approvalList"></div>
       </section>
 
-      <!-- ADM: LAPORAN -->
-      <section class="sec" id="adm-laporan" style="display:none">
-        <div class="sec-hd">
-          <div><h2>Laporan</h2><p>Ekspor data &amp; laporan koperasi</p></div>
-        </div>
+      <!-- ═══ ADM LAPORAN ═══ -->
+      <section class="sec" id="adm-laporan" hidden>
+        <div class="sec-hd"><div><h2>Laporan</h2><p>Ekspor data &amp; laporan koperasi</p></div></div>
         <div class="card-box">
-          <h3 style="margin-bottom:16px">Ekspor Laporan</h3>
-          <div style="display:flex;flex-direction:column;gap:10px">
+          <h3 class="card-box__title">Ekspor Laporan</h3>
+          <div class="export-actions">
             <button class="btn-prim" onclick="exportPDF('admin')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-ico"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Unduh Laporan Koperasi (PDF)
             </button>
             <button class="btn-sec" onclick="exportPDF('struk')">Cetak Struk Transaksi</button>
@@ -671,28 +475,28 @@
         </div>
       </section>
 
-    </main><!-- /content -->
+    </main>
 
-    <!-- ========== BOTTOM NAV (Mobile Karyawan) ========== -->
-    <nav class="bottom-nav" id="navKaryawanBottom" style="display:none">
-      <button class="bn-item active" onclick="showSec('kar-home');setActiveBnav(this)">
+    <!-- ══ BOTTOM NAV (mobile karyawan) ══ -->
+    <nav class="bottom-nav" id="navKaryawanBottom" hidden>
+      <button class="bn-item active" data-sec="kar-home" onclick="showSec('kar-home')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         Beranda
       </button>
-      <button class="bn-item" onclick="showSec('kar-simpanan');setActiveBnav(this)">
+      <button class="bn-item" data-sec="kar-simpanan" onclick="showSec('kar-simpanan')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
         Simpanan
       </button>
-      <button class="bn-item" onclick="showSec('kar-pinjaman');setActiveBnav(this)">
+      <button class="bn-item" data-sec="kar-pinjaman" onclick="showSec('kar-pinjaman')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
         Pinjaman
       </button>
-      <button class="bn-item" onclick="showSec('kar-katalog');setActiveBnav(this)">
+      <button class="bn-item" data-sec="kar-katalog" onclick="showSec('kar-katalog')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Belanja
-        <span class="bn-badge" id="bnCartBadge" style="display:none">0</span>
+        <span class="bn-badge" id="bnCartBadge" hidden>0</span>
       </button>
-      <button class="bn-item" onclick="showSec('kar-riwayat');setActiveBnav(this)">
+      <button class="bn-item" data-sec="kar-riwayat" onclick="showSec('kar-riwayat')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
         Riwayat
       </button>
@@ -701,7 +505,7 @@
   </div><!-- /main-wrap -->
 </div><!-- /dash-page -->
 
-<!-- ========== MODAL BARANG ========== -->
+<!-- ══ MODAL BARANG ══ -->
 <div id="modalBarang" class="modal-overlay">
   <div class="modal-box">
     <div class="modal-hd">
@@ -743,103 +547,126 @@
   </div>
 </div>
 
-<!-- ========== TOAST ========== -->
 <div id="toast" class="toast"></div>
 
-<!-- ========== INLINE CSS TAMBAHAN ========== -->
-<style>
-/* Transaction list items di Riwayat Belanja card */
-.tx-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.04);
-  transition: background 0.15s;
-}
-.tx-item:hover { background: var(--green-50); }
-.tx-icon {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  background: var(--green-50);
-  border: 1px solid var(--green-100);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.tx-info { flex: 1; min-width: 0; }
-.tx-name {
-  font-size: 0.83rem;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tx-date { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
-.tx-amount {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.tx-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 13px 20px;
-  background: var(--green-50);
-  border-top: 1px solid var(--green-100);
-}
-.tx-footer-lbl { font-size: 0.76rem; color: var(--muted); font-weight: 500; }
-.tx-footer-val { font-size: 0.9rem; font-weight: 800; color: var(--primary); }
-
-/* Pinjaman sub-tabs helper */
-</style>
-
+<!-- ══ SCRIPTS ══ -->
 <script>
-// Helper: toggle karyawan pinjaman tabs
 function setKarPinTab(btn, tabId) {
   document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  ['kpt-status','kpt-ajukan'].forEach(id => document.getElementById(id).style.display = 'none');
-  document.getElementById(tabId).style.display = 'block';
+  ['kpt-status','kpt-ajukan'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.hidden = true;
+  });
+  const t = document.getElementById(tabId);
+  if (t) t.hidden = false;
 }
-
-// Helper: set active bottom nav item
-function setActiveBnav(btn) {
-  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-// Show bottom nav for karyawan, sync with showSec
-const _origShowSec = window.showSec;
 </script>
+
 <script src="js/dashboard.js"></script>
 
 <script>
-// After dashboard.js init, show karyawan bottom nav
-document.addEventListener('DOMContentLoaded', () => {
-  // Override updateCartUI to also update bottom nav badge
-  const _prevUpdate = window.updateCartUI;
-  window.updateCartUI = function() {
-    _prevUpdate && _prevUpdate();
-    const total = cart.reduce((s, c) => s + c.qty, 0);
-    const bb = document.getElementById('bnCartBadge');
-    if (bb) { bb.textContent = total; bb.style.display = total > 0 ? 'block' : 'none'; }
-  };
-});
-
-// Show bottom nav only for karyawan — done after init() runs
-setTimeout(() => {
+(function patchApp() {
+  // ── 1. Tampilkan bottom nav untuk karyawan ──
   try {
     const u = JSON.parse(sessionStorage.getItem('kmes_user'));
     if (u && u.role === 'karyawan') {
-      document.getElementById('navKaryawanBottom').style.display = 'flex';
+      const nav = document.getElementById('navKaryawanBottom');
+      if (nav) nav.hidden = false;
+      // Perbarui sub-header
+      const sub = document.getElementById('karSub');
+      if (sub) sub.textContent = u.dept + ' · NIK ' + u.nik;
     }
-  } catch(e) {}
-}, 50);
-</script>
+  } catch(e){}
 
+  // ── 2. Patch showSec → sync bottom nav ──
+  const _show = window.showSec;
+  if (typeof _show === 'function') {
+    window.showSec = function(id) {
+      _show(id);
+      document.querySelectorAll('.bn-item[data-sec]').forEach(b => {
+        b.classList.toggle('active', b.dataset.sec === id);
+      });
+    };
+  }
+
+  // ── 3. Patch updateCartUI → sync badge ──
+  const _cart = window.updateCartUI;
+  if (typeof _cart === 'function') {
+    window.updateCartUI = function() {
+      _cart();
+      const n = typeof cart !== 'undefined' ? cart.reduce((s,c)=>s+c.qty,0) : 0;
+      const bb = document.getElementById('bnCartBadge');
+      if (bb) { bb.textContent = n; bb.hidden = n === 0; }
+    };
+  }
+
+  // ── 4. Render karTxList sebagai card list ──
+  function renderTxList() {
+    const el = document.getElementById('karTxList');
+    if (!el || typeof RW_BELANJA === 'undefined') return;
+    const ico = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`;
+    const total = RW_BELANJA.reduce((s,t)=>s+t.total,0);
+    const list  = RW_BELANJA.slice(0,3);
+    el.innerHTML = list.map((t,i)=>`
+      <div class="tx-item${i===list.length-1?' tx-item--last':''}">
+        <div class="tx-icon">${ico}</div>
+        <div class="tx-info">
+          <div class="tx-name">${t.produk}</div>
+          <div class="tx-date">${t.tgl} · ${t.id}</div>
+        </div>
+        <div class="tx-amount">${rp(t.total)}</div>
+      </div>`).join('') +
+      `<div class="tx-footer">
+        <span class="tx-footer-lbl">Total Belanja Bulan Ini</span>
+        <span class="tx-footer-val">${rp(total)}</span>
+      </div>`;
+    const wv = document.getElementById('widTxVal');
+    if (wv) wv.textContent = rp(total);
+  }
+
+  // ── 5. Patch renderSaldoWidget → isi limit + pinjaman progress ──
+  const _saldo = window.renderSaldoWidget;
+  if (typeof _saldo === 'function') {
+    window.renderSaldoWidget = function() {
+      _saldo();
+      renderTxList();
+      if (typeof getSimpanan !== 'function') return;
+      const s = getSimpanan();
+      const limit = s.total * 2;
+      const active = typeof PINJAMAN_DB !== 'undefined'
+        ? PINJAMAN_DB.find(p => p.nik === USER.nik && p.status === 'active') : null;
+      const used = active ? (active.nominal - active.lunas * active.cicilan) : 0;
+      const pct  = limit > 0 ? Math.min(100, Math.round((used/limit)*100)) : 0;
+
+      const lv = document.getElementById('shcLimitVal');
+      const lf = document.getElementById('shcLimitFill');
+      if (lv) lv.textContent = rp(limit - used);
+      if (lf) lf.style.width = pct + '%';
+
+      if (active) {
+        const pct2 = Math.round((active.lunas/active.tenor)*100);
+        const pl = document.getElementById('wPinjamanProgLbl');
+        const pp = document.getElementById('wPinjamanProgPct');
+        const pf = document.getElementById('wPinjamanProgFill');
+        if (pl) pl.textContent = `Lunas ${active.lunas}/${active.tenor} cicilan`;
+        if (pp) pp.textContent = pct2 + '%';
+        if (pf) pf.style.width = pct2 + '%';
+      }
+    };
+    // Re-render dengan data yang sudah ada
+    if (typeof getSimpanan !== 'undefined') window.renderSaldoWidget();
+  }
+
+  // ── 6. Register Service Worker ──
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(r => console.log('[SW] Registered:', r.scope))
+        .catch(e => console.warn('[SW] Error:', e));
+    });
+  }
+})();
+</script>
 </body>
 </html>
